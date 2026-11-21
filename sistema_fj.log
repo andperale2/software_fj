@@ -1,0 +1,42 @@
+2026-11-21 10:30:45 | INFO    | === INICIO DE SESIÓN DEL SISTEMA SOFTWARE FJ ===
+2026-11-21 10:31:00 | INFO    | Cliente registrado exitosamente: [1065890123] Laura Sofía Mendoza
+2026-11-21 10:31:00 | INFO    | Cliente registrado exitosamente: [77192834] Carlos Andrés Bermúdez
+2026-11-21 10:31:00 | ERROR   | [Op. 2 Controlada] Registro inválido de cliente: Formato de correo electrónico inválido: 'correo_sin_arroba.com'.
+2026-11-21 10:31:00 | ERROR   | [Op. 3 Controlada] Parámetro faltante en cliente: El nombre del cliente no puede estar vacío.
+2026-11-21 10:31:00 | INFO    | Servicio de Sala creado: [SRV-01] Sala Innovación Norte - $80,000.00/hora (Disponible)
+2026-11-21 10:31:00 | INFO    | Servicio de Alquiler de Equipo creado: [SRV-02] Workstation Ryzen 9 RTX - $35,000.00/hora (Disponible)
+2026-11-21 10:31:00 | INFO    | Servicio de Asesoría creado: [SRV-03] Arquitectura Cloud & DevOps - $120,000.00/hora (Disponible)
+2026-11-21 10:31:00 | INFO    | Servicio de Sala creado: [SRV-04] Sala Juntas Sur (En Mantenimiento) - $60,000.00/hora (No disponible)
+2026-11-21 10:31:00 | ERROR   | [Op. 5 Controlada] Creación incorrecta de servicio: La tarifa base debe ser mayor a cero (valor recibido: -15000.0).
+2026-11-21 10:31:00 | INFO    | Reserva creada en estado PENDIENTE: [RES-101] | Cliente: Laura Sofía Mendoza | Servicio: Sala Innovación Norte | Total estimado: $272,040.00
+2026-11-21 10:31:00 | INFO    | Reserva CONFIRMADA: [RES-101] para Laura Sofía Mendoza.
+2026-11-21 10:31:00 | INFO    | Reserva PROCESADA y facturada: [RES-101] | Total: $272,040.00
+2026-11-21 10:31:00 | INFO    | Auditoría de procesamiento finalizada para reserva [RES-101] (auditoria_cerrada=True).
+2026-11-21 10:31:00 | INFO    | Reserva creada en estado PENDIENTE: [RES-102] | Cliente: Carlos Andrés Bermúdez | Servicio: Arquitectura Cloud & DevOps | Total estimado: $642,600.00
+2026-11-21 10:31:00 | INFO    | Reserva CONFIRMADA: [RES-102] para Carlos Andrés Bermúdez.
+2026-11-21 10:31:00 | ERROR   | [Op. 8 Controlada] Servicio no disponible: El servicio 'Sala Juntas Sur (En Mantenimiento)' [SRV-04] no se encuentra disponible.
+2026-11-21 10:31:00 | ERROR   | [Op. 9 Controlada] Fallo al inicializar la reserva [RES-104] por parámetros inválidos. | Causa encadenada: El alquiler de equipos requiere un mínimo de 2 horas (solicitadas: 1).
+2026-11-21 10:31:00 | ERROR   | [Op. 10 Controlada] Fallo al inicializar la reserva [RES-105] por parámetros inválidos. | Causa encadenada: Descuento fuera de rango permitido [0.0 - 0.99]: 1.5.
+2026-11-21 10:31:00 | INFO    | Reserva CANCELADA: [RES-102] (antes CONFIRMADA). Motivo: Reprogramación solicitada por el cliente
+2026-11-21 10:31:00 | ERROR   | Error al confirmar reserva [RES-102]: No se puede confirmar la reserva [RES-102] porque su estado es 'CANCELADA'.
+2026-11-21 10:31:08 | ERROR   | Operación 1 fallida inesperadamente: Ya existe un cliente registrado con documento '1065890123'.
+2026-11-21 10:31:08 | ERROR   | [Op. 2 Controlada] Registro inválido de cliente: Formato de correo electrónico inválido: 'correo_sin_arroba.com'.
+2026-11-21 10:31:08 | ERROR   | [Op. 3 Controlada] Parámetro faltante en cliente: El nombre del cliente no puede estar vacío.
+2026-11-21 10:31:08 | INFO    | Servicio de Sala creado: [SRV-01] Sala Innovación Norte - $80,000.00/hora (Disponible)
+2026-11-21 10:31:08 | INFO    | Servicio de Alquiler de Equipo creado: [SRV-02] Workstation Ryzen 9 RTX - $35,000.00/hora (Disponible)
+2026-11-21 10:31:08 | INFO    | Servicio de Asesoría creado: [SRV-03] Arquitectura Cloud & DevOps - $120,000.00/hora (Disponible)
+2026-11-21 10:31:08 | INFO    | Servicio de Sala creado: [SRV-04] Sala Juntas Sur (En Mantenimiento) - $60,000.00/hora (No disponible)
+2026-11-21 10:31:08 | ERROR   | Operación 4 fallida inesperadamente: Ya existe un servicio con código 'SRV-01'.
+2026-11-21 10:31:08 | ERROR   | [Op. 5 Controlada] Creación incorrecta de servicio: La tarifa base debe ser mayor a cero (valor recibido: -15000.0).
+2026-11-21 10:31:08 | INFO    | Reserva creada en estado PENDIENTE: [RES-101] | Cliente: Laura Sofía Mendoza | Servicio: Sala Innovación Norte | Total estimado: $272,040.00
+2026-11-21 10:31:08 | INFO    | Reserva CONFIRMADA: [RES-101] para Laura Sofía Mendoza.
+2026-11-21 10:31:08 | INFO    | Reserva PROCESADA y facturada: [RES-101] | Total: $272,040.00
+2026-11-21 10:31:08 | INFO    | Auditoría de procesamiento finalizada para reserva [RES-101] (auditoria_cerrada=True).
+2026-11-21 10:31:08 | INFO    | Reserva creada en estado PENDIENTE: [RES-102] | Cliente: Carlos Andrés Bermúdez | Servicio: Arquitectura Cloud & DevOps | Total estimado: $642,600.00
+2026-11-21 10:31:08 | INFO    | Reserva CONFIRMADA: [RES-102] para Carlos Andrés Bermúdez.
+2026-11-21 10:31:08 | ERROR   | [Op. 8 Controlada] Servicio no disponible: El servicio 'Sala Juntas Sur (En Mantenimiento)' [SRV-04] no se encuentra disponible.
+2026-11-21 10:31:08 | ERROR   | [Op. 9 Controlada] Fallo al inicializar la reserva [RES-104] por parámetros inválidos. | Causa encadenada: El alquiler de equipos requiere un mínimo de 2 horas (solicitadas: 1).
+2026-11-21 10:31:08 | ERROR   | [Op. 10 Controlada] Fallo al inicializar la reserva [RES-105] por parámetros inválidos. | Causa encadenada: Descuento fuera de rango permitido [0.0 - 0.99]: 1.5.
+2026-11-21 10:31:08 | INFO    | Reserva CANCELADA: [RES-102] (antes CONFIRMADA). Motivo: Reprogramación solicitada por el cliente
+2026-11-21 10:31:08 | ERROR   | Error al confirmar reserva [RES-102]: No se puede confirmar la reserva [RES-102] porque su estado es 'CANCELADA'.
+2026-11-21 10:31:12 | INFO    | === CIERRE NORMAL DEL SISTEMA SOFTWARE FJ ===
