@@ -102,4 +102,82 @@ class ReservaSala(Servicio):
         self._tiene_videoconferencia = bool(tiene_videoconferencia)
         log_sistema.info(f"Servicio de Sala creado: {self.obtener_detalle()}")
 
-    def validar_parametros_servicio(
+    def validar_parametros_servicio(self, horas: int) -> bool:
+        if horas < 1 or horas > 12:
+            raise DatosInvalidosError(
+                f"La reserva de sala requiere entre 1 y 12 horas por jornada (solicitadas: {horas})."
+            )
+        return True
+
+    def calcular_costo(self, horas: int, descuento: float = 0.0, iva: float = 0.19) -> float:
+        """Sobrescritura polimórfica: añade recargo fijo de $15,000 por equipo de videoconferencia."""
+        self.validar_parametros_servicio(horas)
+        costo_base = super().calcular_costo(horas, descuento, iva)
+        recargo_av = 15000.0 if self._tiene_videoconferencia else 0.0
+        return round(costo_base + recargo_av, 2)
+
+    def describir_servicio(self) -> str:
+        av = "con sistema de videoconferencia" if self._tiene_videoconferencia else "estándar"
+        return f"Sala '{self._nombre_servicio}' (Capacidad: {self._capacidad_personas} personas, {av})."
+
+
+class AlquilerEquipo(Servicio):
+    """Servicio especializado 2: Alquiler de hardware y estaciones de trabajo."""
+
+    def __init__(self, codigo_servicio: str, nombre_servicio: str, tarifa_base: float,
+                 tipo_equipo: str, serial_inventario: str, disponible: bool = True):
+        super().__init__(codigo_servicio, nombre_servicio, tarifa_base, disponible)
+        if not tipo_equipo or not serial_inventario:
+            raise ParametroFaltanteError("El tipo de equipo y serial de inventario son obligatorios.")
+        self._tipo_equipo = str(tipo_equipo).strip()
+        self._serial_inventario = str(serial_inventario).strip()
+        log_sistema.info(f"Servicio de Alquiler de Equipo creado: {self.obtener_detalle()}")
+
+    def validar_parametros_servicio(self, horas: int) -> bool:
+        if horas < 2:
+            raise DatosInvalidosError(
+                f"El alquiler de equipos requiere un mínimo de 2 horas (solicitadas: {horas})."
+            )
+        return True
+
+    def calcular_costo(self, horas: int, descuento: float = 0.0, iva: float = 0.19) -> float:
+        """Sobrescritura polimórfica: aplica póliza de seguro obligatorio del 5% sobre la tarifa base."""
+        self.validar_parametros_servicio(horas)
+        costo_base = super().calcular_costo(horas, descuento, iva)
+        seguro_equipo = (self._tarifa_base * horas) * 0.05
+        return round(costo_base + seguro_equipo, 2)
+
+    def describir_servicio(self) -> str:
+        return f"Equipo '{self._nombre_servicio}' [Tipo: {self._tipo_equipo} | Serial: {self._serial_inventario}]."
+
+
+class AsesoriaEspecializada(Servicio):
+    """Servicio especializado 3: Consultoría y asesoría técnica especializada."""
+
+    def __init__(self, codigo_servicio: str, nombre_servicio: str, tarifa_base: float,
+                 especialidad: str, consultor_asignado: str, disponible: bool = True):
+        super().__init__(codigo_servicio, nombre_servicio, tarifa_base, disponible)
+        if not especialidad or not consultor_asignado:
+            raise ParametroFaltanteError("La especialidad y el nombre del consultor son obligatorios.")
+        self._especialidad = str(especialidad).strip()
+        self._consultor_asignado = str(consultor_asignado).strip()
+        log_sistema.info(f"Servicio de Asesoría creado: {self.obtener_detalle()}")
+
+    def validar_parametros_servicio(self, horas: int) -> bool:
+        if horas < 1 or horas > 8:
+            raise DatosInvalidosError(
+                f"Las asesorías especializadas permiten entre 1 y 8 horas por sesión (solicitadas: {horas})."
+            )
+        return True
+
+    def calcular_costo(self, horas: int, descuento: float = 0.0, iva: float = 0.19) -> float:
+        """Sobrescritura polimórfica: si la asesoría es de 4 o más horas, otorga 10% adicional."""
+        self.validar_parametros_servicio(horas)
+        descuento_final = min(descuento + 0.10, 0.90) if horas >= 4 else descuento
+        return super().calcular_costo(horas, descuento_final, iva)
+
+    def describir_servicio(self) -> str:
+        return (
+            f"Asesoría en {self._especialidad} ('{self._nombre_servicio}') "
+            f"a cargo del especialista {self._consultor_asignado}."
+        )
